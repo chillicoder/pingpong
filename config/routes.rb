@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :games
   get '/history', to: 'home#history'
   get '/log',     to: 'home#log'
+  get '/rankings', to: 'rankings#index'
 end
