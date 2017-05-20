@@ -1,3 +1,5 @@
+require 'ranker'
+
 class Game < ActiveRecord::Base
   belongs_to :user
 
@@ -22,5 +24,26 @@ class Game < ActiveRecord::Base
     opponent.score += their_score
     opponent.games_played += 1
     opponent.save!
+    
+    # update ranking
+    winner = user
+    loser = opponent
+
+    if user.score >= 21 
+      winner = user
+      loser = opponent
+    else
+      winner = opponent
+      loser = user
+    end
+
+    ranker = Ranker.new(winner.rank, loser.rank, -1)
+    result = ranker.calculate
+
+    winner.rank = result[0]
+    loser.rank = result[1]
+
+    winner.save!
+    loser.save!
   end
 end
