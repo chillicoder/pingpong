@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Games</h1>
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Date played at</th>
+      <th>Opponent</th>
+      <th>Your score</th>
+      <th>Their score</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.date_played_at %></td>
+        <td><%= User.where(id: game.opponent_id).first.email %></td>
+        <td><%= game.your_score %></td>
+        <td><%= game.their_score %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
