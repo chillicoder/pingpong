@@ -18,3 +18,7 @@ group :development, :test do
 end
 
 gem 'json', '~> 1.8.5'
+
+group :production do
+  gem 'pg'
+end
