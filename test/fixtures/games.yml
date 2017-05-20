@@ -2,7 +2,7 @@
 
 win:
   date_played_at: 2017-04-20
-  opponent_id: 1
+  opponent_id: <%= User.first.id %>
   your_score: 21
   their_score: 1
   user_id: default

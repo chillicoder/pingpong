@@ -2,6 +2,9 @@ require 'test_helper'
 
 class GamesControllerTest < ActionController::TestCase
   setup do
+    user = users(:default)
+    sign_in user
+
     @game = games(:win)
   end
 
@@ -21,29 +24,6 @@ class GamesControllerTest < ActionController::TestCase
       post :create, game: { date_played_at: @game.date_played_at, opponent_id: @game.opponent_id, their_score: @game.their_score, user_id: @game.user_id, your_score: @game.your_score }
     end
 
-    assert_redirected_to game_path(assigns(:game))
-  end
-
-  test "should show game" do
-    get :show, id: @game
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @game
-    assert_response :success
-  end
-
-  test "should update game" do
-    patch :update, id: @game, game: { date_played_at: @game.date_played_at, opponent_id: @game.opponent_id, their_score: @game.their_score, user_id: @game.user_id, your_score: @game.your_score }
-    assert_redirected_to game_path(assigns(:game))
-  end
-
-  test "should destroy game" do
-    assert_difference('Game.count', -1) do
-      delete :destroy, id: @game
-    end
-
-    assert_redirected_to games_path
+    assert_redirected_to root_path
   end
 end
