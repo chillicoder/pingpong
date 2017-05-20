@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.4'
 
 gem 'rails',        '4.2.3'
 gem 'sqlite3', group: :development
@@ -21,4 +22,5 @@ gem 'json', '~> 1.8.5'
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
