@@ -12,4 +12,15 @@ class Game < ActiveRecord::Base
       errors.add(:base, 'The difference must be at least 2 pts.')
     end
   end
+
+  after_save do
+    user.score += your_score
+    user.games_played += 1
+    user.save!
+
+    opponent = User.find(opponent_id)
+    opponent.score += their_score
+    opponent.games_played += 1
+    opponent.save!
+  end
 end
